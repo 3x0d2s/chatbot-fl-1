@@ -1,0 +1,6 @@
+
+__pycache__/
+.vscode/
+#
+bot/db/payment.db
+bot/config/config.py
