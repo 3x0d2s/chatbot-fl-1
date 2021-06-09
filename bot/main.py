@@ -23,7 +23,7 @@ def ddd(msg):
 
 def createBD_FromDump(path_db, path_dump):
     cur = sqlite3.connect(path_db)
-    f = open(path_dump, 'r')
+    f = open(path_dump, 'r', encoding='utf-8')
     dump = f.read()
     cur.executescript(dump)
 
