@@ -101,6 +101,16 @@ def start_payment(call):
 def start_card_payment(call):
     tg_id = call.message.chat.id
     amount = get_amount_config(config.PATH_SETTINGS)
+    #
+    msg_id = call.message.message_id
+    bot.delete_message(tg_id, msg_id)
+    #
+    keyboard = InlineKeyboardMarkup()
+    keyboard.add(InlineKeyboardButton(text="Оплатить",
+                                      pay=True))
+    keyboard.add(InlineKeyboardButton(text="Отмена",
+                                      callback_data="cancel"))
+    #
     bot.send_invoice(chat_id=tg_id,
                      title='Доступ к сказкам',
                      description=config.INVOICE_DESCRIPTION_TEXT,
@@ -113,7 +123,8 @@ def start_card_payment(call):
                      prices=[LabeledPrice(label='Доступ к сказкам',
                                           amount=int(amount))],
                      start_parameter='start_parameter',
-                     invoice_payload='coupon'
+                     invoice_payload='coupon',
+                     reply_markup=keyboard
                      )
 
 
