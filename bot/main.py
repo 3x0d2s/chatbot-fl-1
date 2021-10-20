@@ -71,7 +71,7 @@ def change_amount(message):
 def start_text(user_id):
     msg = config.START_TEXT
     #
-    pay_btn = InlineKeyboardButton(text='Оплатить',
+    pay_btn = InlineKeyboardButton(text='Выбрать канал',
                                    callback_data='choose_product'
                                    )
     inline_markup = InlineKeyboardMarkup().add(pay_btn)
