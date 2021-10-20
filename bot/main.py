@@ -29,9 +29,8 @@ def createBD_FromDump(path_db, path_dump):
 
 
 def send_docs(user_id):
-    # bot.send_document(user_id, data=config.DOC_1)
-    # bot.send_document(user_id, data=config.DOC_2)
-    pass
+    bot.send_document(user_id, data=config.DOC_1)
+    bot.send_document(user_id, data=config.DOC_2)
 
 
 @bot.message_handler(commands=['start'])
@@ -281,7 +280,7 @@ def get_qiwi_data():
 
 def successful_payment(user_id, product_id: int):
     chat_id = config.PRODUCTS[product_id-1]["chat_id"]
-    
+
     url = bot.create_chat_invite_link(
         chat_id=chat_id,
         member_limit=1
