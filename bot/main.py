@@ -280,11 +280,20 @@ def get_qiwi_data():
 
 
 def successful_payment(user_id, product_id: int):
-    url_btn = InlineKeyboardButton(text='Перейти в канал...',
-                                   url=config.PRODUCTS[product_id-1]["url"]
-                                   )
-    inline_markup = InlineKeyboardMarkup().add(url_btn)
-    #
+    chat_id = config.PRODUCTS[product_id-1]["chat_id"]
+    
+    url = bot.create_chat_invite_link(
+        chat_id=chat_id,
+        member_limit=1
+    )
+
+    inline_markup = InlineKeyboardMarkup()
+    url_btn = InlineKeyboardButton(
+        text='Перейти в канал...',
+        url=url.invite_link
+    )
+    inline_markup.add(url_btn)
+
     bot.send_message(
         chat_id=user_id,
         text='✅ Платёж прошёл, спасибо за оплату!',
